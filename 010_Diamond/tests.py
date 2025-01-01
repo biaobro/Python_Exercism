@@ -2,17 +2,22 @@ import unittest
 from diamond import (
     rows,
 )
+
+
 # Tests adapted from `problem-specifications//canonical-data.json`
 class DiamondTest(unittest.TestCase):
     def test_degenerate_case_with_a_single_a_row(self):
         result = ["A"]
         self.assertEqual(rows("A"), result)
+
     def test_degenerate_case_with_no_row_containing_3_distinct_groups_of_spaces(self):
         result = [" A ", "B B", " A "]
         self.assertEqual(rows("B"), result)
+
     def test_smallest_non_degenerate_case_with_odd_diamond_side_length(self):
         result = ["  A  ", " B B ", "C   C", " B B ", "  A  "]
         self.assertEqual(rows("C"), result)
+
     def test_smallest_non_degenerate_case_with_even_diamond_side_length(self):
         result = [
             "   A   ",
@@ -24,6 +29,7 @@ class DiamondTest(unittest.TestCase):
             "   A   ",
         ]
         self.assertEqual(rows("D"), result)
+
     def test_largest_possible_diamond(self):
         result = [
             "                         A                         ",
@@ -79,5 +85,7 @@ class DiamondTest(unittest.TestCase):
             "                         A                         ",
         ]
         self.assertEqual(rows("Z"), result)
+
+
 if __name__ == "__main__":
     unittest.main()
