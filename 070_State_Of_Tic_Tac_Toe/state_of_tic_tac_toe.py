@@ -8,7 +8,13 @@
 @Software           : PyCharm
 @Last Modify Time   : 2026/9/27 17:15 
 @Version            : 1.0
-@Description        : None
+@Description        : https://exercism.org/tracks/python/exercises/state-of-tic-tac-toe
+方案1：将二维字符串数组打平成一维数组。【硬编码】赢的方案，然后取硬编码位置坐标的元素进行判断。
+方案2：数学判断方法。两点确定一条直线，在3个点的组合中，取前两个点，对剩下那个点进行验证。 向量叉积判断共线
+原理简单说：两点P1(x1,y1), P2(x2,y2), 取第3点P(x,y)
+向量P1->P2 = (x2-x1, y2-y1)
+向量P1->P = (x-x1, y-y1)
+如果三点共线，或者说两个向量平行，则向量的乘法(叉乘)结果为0，即 -> (x2-x1)(y-y1) - (y2-y1)(x-x1) = 0
 """
 
 
