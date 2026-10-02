@@ -11,20 +11,23 @@
 @Description        : None
 """
 
+
 def triplets_with_sum(number):
     res = []
-    # 改为整数运算， // 表示向下取整
-    # 因为 a < b < c，a + b + c = n，所以 a 不会到达 number 的 1/3
-    for a in range(1, number//3 + 1):
+    for a in range(1, number // 3 + 1):
+        numerator = number * (number - 2 * a)
+        denominator = 2 * (number - a)
 
-        # 进一步缩小 b 的范围，因为 b < c, 且 c = n - a - b, 可以得到 b < (n-a)/2
-        # 所以可以得到 b 的上下限
-        for b in range(a+1, (number-a)//2+1):
-            c = number - a - b
-            if a*a + b*b == c*c:
-                res.append([a,b,c])
+        # b 必须是整数
+        if numerator % denominator != 0:
+            continue
+
+        b = numerator // denominator
+        c = number - a - b
+
+        if a < b < c and a * a + b * b == c * c:
+            res.append([a, b, c])
 
     return res
 
 # triplets_with_sum(840)
-
