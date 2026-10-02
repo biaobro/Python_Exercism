@@ -8,7 +8,7 @@
 @Software           : PyCharm
 @Last Modify Time   : 2026/10/2 16:16 
 @Version            : 1.0
-@Description        : None
+@Description        : https://exercism.org/tracks/python/exercises/book-store
 """
 
 def total(basket):
