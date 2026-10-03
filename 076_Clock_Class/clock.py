@@ -22,34 +22,28 @@ class Clock:
         return f'Clock({self.hour}, {self.minute})'
 
     def __str__(self):
-        # 小时除法求余数， 分钟除法向下取整
-        calc_hour = self.hour % 24 + self.minute // 60
+        # hour * 60 + minute 将输入时间统一转成分钟数， % 1440 让结果始终落在1天之内
+        total_minutes = (self.hour * 60 + self.minute) % 1440
 
-        # 超过正整数 24，需要再求余数
-        if calc_hour >= 24:
-            calc_hour = calc_hour % 24
+        # 取出小时
+        hour = total_minutes // 60
 
-        # 超过负数 24，需要再求余数
-        if calc_hour < -24:
-            calc_hour = calc_hour % -24 + 24
-            if calc_hour == 24: calc_hour = 0
-
-        if -24 <= calc_hour < 0:
-            calc_hour = calc_hour + 24
-
-        calc_minute = self.minute % 60
-        return f'{calc_hour:02d}:{calc_minute:02d}'
+        # 取出分钟
+        minute = total_minutes % 60
+        return f'{hour:02d}:{minute:02d}'
 
     def __eq__(self, other):
-        if self.__str__() == other.__str__():
-            return True
-        return False
+        # 处理other 不是 Clock的情况
+        if not isinstance(other, Clock):
+            return NotImplemented
+
+        # 简化写法
+        return str(self) == str(other)
 
     def __add__(self, minutes):
-        self.minute = self.minute + minutes
-        return self.__str__()
+        # 不要直接修改原对象，也不要返回字符串
+        return Clock(self.hour, self.minute + minutes)
 
     def __sub__(self, minutes):
-        self.minute = self.minute - minutes
-        return self.__str__()
+        return Clock(self.hour, self.minute - minutes)
 
